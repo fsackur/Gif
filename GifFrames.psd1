@@ -1,4 +1,5 @@
 @{
+    FrameHeight = 46
     Frames = @(
 @'
 

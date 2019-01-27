@@ -8,12 +8,12 @@ $Frames = $FrameData.Frames
 $Index = 0
 while ($true)
 {
-    $CursorOffset = [Math]::Max(0, ([Console]::WindowHeight - $FrameHeight))
-
     [console]::Clear()
     [console]::SetCursorPosition(0, $CursorOffset)
-    [console]::Write($Frames[$Index++])
-    if ($Index -eq $Frames.Count) {$Index = 0}
+
+    $BufferFrames[$Index] | ForEach {$Host.UI.RawUI.SetBufferContents($_.Item1, $_.Item2)}
+
+    if ($Index -eq $BufferFrames.Count) {$Index = 0}
 
     Start-Sleep -Milliseconds 60
 }
